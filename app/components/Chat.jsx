@@ -9,6 +9,7 @@ export default function Chat() {
   const [typing, setTyping] = useState(false);
   const chatEndRef = useRef(null);
 
+  
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, typing]);
@@ -17,7 +18,6 @@ export default function Chat() {
     if (!input.trim()) return;
 
     setMessages((prev) => [...prev, { sender: "user", text: input }]);
-
     try {
       setTyping(true);
 
@@ -50,37 +50,48 @@ export default function Chat() {
     <Box
       sx={{
         height: "100vh",
+        width: "100%",
         display: "flex",
         justifyContent: "center",
+        alignItems: "center",
         bgcolor: "#fff",
+        overflow: "hidden", 
       }}
     >
       <Box
         sx={{
-          width: { xs: "95vw", sm: "90vw", md: "80vw", lg: "70vw", xl: "60vw" },
-          minWidth: "400px",
-          maxWidth: "180vh",
+          width: {
+            xs: "95vw",
+            sm: "90vw",
+            md: "85vw",
+            lg: "180vh", 
+          },
+          maxWidth: "100%",
+          height: "95vh",
           display: "flex",
           flexDirection: "column",
-          height: "100vh",
-          px: { xs: 2, sm: 4, md: 6 },
+          borderRadius: 3,
+          boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+          bgcolor: "#fff",
+          overflow: "hidden",
         }}
       >
         <Box
           sx={{
             flex: 1,
             overflowY: "auto",
+            overflowX: "hidden", 
+            px: { xs: 2, sm: 4 },
+            py: { xs: 2, sm: 3 },
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
             justifyContent: messages.length === 0 ? "center" : "flex-start",
-            pt: { xs: 2, sm: 4 },
-            pb: { xs: 12, sm: 14 },
-            width: "100%",
+            alignItems: "center",
+            bgcolor: "#fafafa",
           }}
         >
           {messages.length === 0 && (
-            <Box textAlign="center" mb={4} px={{ xs: 2, sm: 4 }}>
+            <Box textAlign="center" mb={4}>
               <Typography
                 variant="h5"
                 fontWeight={600}
@@ -91,17 +102,6 @@ export default function Chat() {
               <Typography variant="subtitle1" color="text.secondary">
                 How can I help you today?
               </Typography>
-              <Box
-                sx={{
-                  display: "grid",
-                  gap: 1.5,
-                  mt: 4,
-                  width: "100%",
-                  maxWidth: 600,
-                  gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
-                  mx: "auto",
-                }}
-              ></Box>
             </Box>
           )}
 
@@ -143,10 +143,10 @@ export default function Chat() {
 
         <Box
           sx={{
-            px: { xs: 2, sm: 4, md: 6 },
-            py: { xs: 1, sm: 2 },
-            bgcolor: "#fff",
+            px: { xs: 2, sm: 4 },
+            py: { xs: 1.5, sm: 2 },
             borderTop: "1px solid #e0e0e0",
+            bgcolor: "#fff",
           }}
         >
           <InputBox onSend={handleSend} />
