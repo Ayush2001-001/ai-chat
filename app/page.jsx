@@ -1,19 +1,10 @@
-"use client"
+"use client";
 import Chat from "./components/Chat";
-import { Container } from "@mui/material";
 
 export default function HomePage() {
   return (
-    <Container
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100vh",
-        bgcolor: "#f9f9f9",
-      }}
-    >
-      <Chat/>
-    </Container>
+    <div className="flex justify-center items-center min-h-screen w-full bg-gray-100">
+      <Chat />
+    </div>
   );
 }
