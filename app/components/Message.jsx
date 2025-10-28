@@ -1,36 +1,25 @@
 "use client";
-import { Box, Paper, Typography } from "@mui/material";
 
 export default function Message({ sender, text }) {
   const isUser = sender === "user";
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: isUser ? "flex-end" : "flex-start",
-        mb: 1.5,
-        width: "100%",
-        px: { xs: 1, sm: 2 },
-      }}
+    <div
+      className={`w-full mb-3 px-2 flex ${
+        isUser ? "justify-end" : "justify-start"
+      }`}
     >
-      <Paper
-        elevation={0}
-        sx={{
-          p: 1.5,
-          px: 2,
-          maxWidth: { xs: "85%", sm: "75%" },
-          backgroundColor: isUser ? "#0078ff" : "#f1f3f4",
-          color: isUser ? "#fff" : "#202124",
-          borderRadius: isUser ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
-          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
-          fontSize: { xs: "0.85rem", sm: "0.95rem" },
-          lineHeight: 1.5,
-          wordBreak: "break-word",
-        }}
+      <div
+        className={`py-2 px-4 max-w-[85%] sm:max-w-[75%] break-words leading-6 text-sm sm:text-base shadow-sm
+          ${
+            isUser
+              ? "bg-blue-600 text-white rounded-[18px_18px_4px_18px]"
+              : "bg-white text-gray-900 rounded-[18px_18px_18px_4px] border border-gray-100"
+          }`}
+        style={{ wordBreak: "break-word" }}
       >
-        <Typography variant="body2">{text}</Typography>
-      </Paper>
-    </Box>
+        {text}
+      </div>
+    </div>
   );
 }
